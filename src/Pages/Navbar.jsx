@@ -2,10 +2,19 @@
 import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
+import { auth } from './Firebase.config';
 
 const Navbar = () => { 
 
-  const {user }=use(AuthContext)
+  const {user , SignOutUser }=use(AuthContext) 
+
+
+   const handleSignOut=()=>{
+     
+        SignOutUser(auth) 
+       .then(res=>res.user)
+       .catch(error=>console.log(error))
+   }
 
     return (
      <div className="navbar bg-base-100 shadow-sm">
@@ -38,7 +47,7 @@ const Navbar = () => {
   </div>
   <div className="navbar-end"> 
 
-  {user ? <a className="btn">Sign Out</a> :<Link to='/Login'>Sign In</Link> }
+  {user ? <a className="btn" onClick={handleSignOut}>Sign Out</a> :<Link to='/Login'>Sign In</Link> }
 
 
   </div>

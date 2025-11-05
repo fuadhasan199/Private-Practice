@@ -10,6 +10,7 @@ import About from './Pages/About.jsx';
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx'; 
 import AuthProvider from './Context/AuthProvider.jsx';
+import PrivateRoute from './Routes/PrivateRoute.jsx';
 
 
 
@@ -27,7 +28,10 @@ const router=createBrowserRouter([
       } ,  
       { 
                 path:'/About' , 
-                element:<About></About>
+                element:<PrivateRoute> 
+                   <About></About>
+                </PrivateRoute>
+               
       } ,
       {
         path:"/Login",
