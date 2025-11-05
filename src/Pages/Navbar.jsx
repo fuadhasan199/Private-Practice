@@ -1,7 +1,12 @@
-import React from 'react';
-import { NavLink } from 'react-router';
 
-const Navbar = () => {
+import React, { use } from 'react';
+import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
+
+const Navbar = () => { 
+
+  const {user }=use(AuthContext)
+
     return (
      <div className="navbar bg-base-100 shadow-sm">
   <div className="navbar-start">
@@ -31,8 +36,11 @@ const Navbar = () => {
            <NavLink className={({isActive})=>isActive ? 'text-red-500':"" } to={'/About'}  >About</NavLink>
     </ul>
   </div>
-  <div className="navbar-end">
-    <a className="btn">Button</a>
+  <div className="navbar-end"> 
+
+  {user ? <a className="btn">Sign Out</a> :<Link to='/Login'>Sign In</Link> }
+
+
   </div>
 </div>
     );

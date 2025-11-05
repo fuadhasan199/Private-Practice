@@ -1,9 +1,11 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import React from 'react';
-import { auth } from './Firebase.config';
+// import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { use } from 'react';
+import { AuthContext } from '../Context/AuthContext';
+// import { auth } from './Firebase.config';
 
 const Login = () => { 
- 
+   const { SignInUser}=use(AuthContext) 
+   console.log(SignInUser)
     const HandleSubmit =(e)=>{
              e.preventDefault() 
              const email=e.target.email.value 
@@ -12,15 +14,7 @@ const Login = () => {
   
             
   
-        signInWithEmailAndPassword(auth, email, password)
-    .then((res) => {
-        
-      console.log(res.user)
-    
-    })
-    .catch((error) => {
-       console.log(error)
-    });
+ 
   
   
     }
